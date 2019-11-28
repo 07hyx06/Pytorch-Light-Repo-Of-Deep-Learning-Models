@@ -16,8 +16,4 @@
 1. pix2pix
 2. UGATAT（模型很大，light版本都需要**rtx2080ti**）
 ### 其它模型：
-<<<<<<< HEAD
-0. Class Activation Map
-=======
-0. Class Activation Map
->>>>>>> 06a732ac8465511e3360af1614733c3ccc277a5d
+0. CAM（建议使用**CPU**）
