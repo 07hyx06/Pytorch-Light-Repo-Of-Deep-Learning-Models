@@ -15,3 +15,5 @@
 0. Cycle-GAN
 1. pix2pix
 2. UGATAT（模型很大，light版本都需要**rtx2080ti**）
+### 其它模型：
+0. Class Activation Map
