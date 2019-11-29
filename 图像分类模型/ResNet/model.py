@@ -24,7 +24,7 @@ class ResBlock(nn.Module):
 
     def forward(self, x):
         out = self.layer(x)
-        out += self.extra(x)
+        out += self.extra(x)  # 恒等变换
         out = F.relu(out)
         return out
 
@@ -52,15 +52,14 @@ class ResNet(nn.Module):
             self.in_planes = out_planes
         return nn.Sequential(*layers)
 
-    # 前向传播
     def forward(self, x):
-        x = self.conv1(x)
-        x = self.layer1(x)
-        x = self.layer2(x)
-        x = self.layer3(x)
-        x = self.avg_pool(x)
-        x = torch.flatten(x, 1)
-        x = self.fc(x)
+        x = self.conv1(x)  # [n,3,32,32] -> [n,16,32,32]
+        x = self.layer1(x)  # [n,16,32,32] -> [n,16,16,16]
+        x = self.layer2(x)  # [n,16,16,16] -> [n,32,8,8]
+        x = self.layer3(x)  # [n,32,8,8] -> [n,64,8,8]
+        x = self.avg_pool(x)  # [n,64,8,8] -> [n,64,1,1]
+        x = torch.flatten(x, 1)  # [n,64,1,1] -> [n,64]
+        x = self.fc(x)  # [n,64] -> [n,10]
         return x
 
 
